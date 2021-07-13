@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Create Account</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="center" onload="onLoad()">
+  <h1>Create an Account</h1>
+  <div>
+    <input type="text" name="cn" id="signup-username" placeholder="Email Login" class="signInInput"><br><br>
+    <input type="password" name="password" id="signup-password" placeholder="Password" class="signInInput"><br><br>
+    <input type="text" name="displayName" id="signup-displayName" placeholder="Display Name" class="signInInput"><br><br>
+    <input type="text" name="displayName" id="signup-PhoneNumber" placeholder="Phone Number" class="signInInput"><br><br>
+    <input type="text" name="displayName" id="signup-Street" placeholder="Street Address" class="signInInput"><br><br>
+    <input type="text" name="displayName" id="signup-City" placeholder="City" class="signInInput"><br><br>
+    <input type="text" name="displayName" id="signup-State" placeholder="State" class="signInInput"><br><br>
+    <input type="text" name="displayName" id="signup-Postal" placeholder="Postal Code" class="signInInput"><br><br>
+
+
+    <button class="button" type="button" onclick="createAccount()">Create Account</button><br>
+    <button class="button" type="button" onclick="goToSignIn()">Sign In</button><br>
+
+    <div id="status">
+
+    </div>
+
+    <div class="footer">
+      <p>Family Solutions LLC. &copy; 2021 | Privacy Policy | More Info.</p>
+  </div>
+  </div>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyDcTaYVHzHbL1z6UT7SuOqQZIbo-oxjak4",
+      authDomain: "my-home-manager-d4283.firebaseapp.com",
+      projectId: "my-home-manager-d4283",
+      storageBucket: "my-home-manager-d4283.appspot.com",
+      messagingSenderId: "757011852605",
+      appId: "1:757011852605:web:b668c8fec536e2317ae954",
+      measurementId: "G-E4DR7SSPWE"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    //make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    db.settings({ timestampsInSnapshots: true });
+
+    firebase.analytics();
+    var cred;
+  </script>
+  <!--<script src="js/login.js"></script>-->
+  <script src="js/signup.js"></script>
+  <!--<script src="js/script.js"></script>-->
+
+</body>
+
+</html>

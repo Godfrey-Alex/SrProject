@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body id="center" onload="onLoad()">
+
+  <ul class="nav">
+    <li><a href="/summary.html">Summary</a></li>
+    <li><a href="/homes.html">Homes</a></li>
+    <li><a href="/newHome.html">New Home</a></li>
+    <li><a href="/profile.html">Profile</a></li>
+    <li><a onclick="signOut()">Logout</a></li>
+  </ul>
+
+  <div id="parent">
+  </div>
+
+
+
+  <div class="footer">
+    <p>Family Solutions LLC. &copy; 2021 | Privacy Policy | More Info.</p>
+  </div>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyDcTaYVHzHbL1z6UT7SuOqQZIbo-oxjak4",
+      authDomain: "my-home-manager-d4283.firebaseapp.com",
+      projectId: "my-home-manager-d4283",
+      storageBucket: "my-home-manager-d4283.appspot.com",
+      messagingSenderId: "757011852605",
+      appId: "1:757011852605:web:b668c8fec536e2317ae954",
+      measurementId: "G-E4DR7SSPWE"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    //make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    db.settings({ timestampsInSnapshots: true });
+
+    firebase.analytics();
+    var cred;
+  </script>
+  <!--<script src="js/login.js"></script>
+      <script src="js/signup.js"></script>-->
+  <script src="js/summary.js"></script>
+</body>
+
+</html>

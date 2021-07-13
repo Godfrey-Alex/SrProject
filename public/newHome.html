@@ -1,0 +1,286 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="center" onload="onLoad()">
+    <ul class="nav">
+        <li><a href="/summary.html">Summary</a></li>
+        <li><a href="/homes.html">Homes</a></li>
+        <li><a href="/newHome.html">New Home</a></li>
+        <li><a href="/profile.html">Profile</a></li>
+        <li><a onclick="signOut()">Logout</a></li>
+    </ul>
+    <h1>Create New Home:</h1>
+
+    <div id="newHomeInput">
+
+        <div id="homeDisplay">
+            <div class='container'>
+
+
+                <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-name'>Home Name:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="text" name="newHome-name" id="newHome-name" placeholder="" class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-stAddress'>Street Address:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="text" name="newHome-stAddress" id="newHome-stAddress" placeholder=""
+                class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-city'>City:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="text" name="newHome-city" id="newHome-city" placeholder="" class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-state'>State:</label>
+                    </div>
+                    <div class='col-75'>
+                        <select name="state" class="textInput" id="newHome-state">
+                            <option value=""></option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-zip'>Zip:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="text" name="newHome-zip" id="newHome-zip" placeholder="" class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-sqft'>sqft:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="number" name="newHome-sqft" id="newHome-sqft" placeholder="" class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-numBdRms'>Number of Bed Rooms:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="number" name="newHome-numBdRms" id="newHome-numBdRms" placeholder=""
+                class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-numBthRms'>Number of Bathrooms:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="number" name="newHome-numBthRms" id="newHome-numBthRms" placeholder=""
+                class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-flooring'>Floor Type:</label>
+                    </div>
+                    <div class='col-75'>
+                        <select name="newHome-flooring" class="textInput" id="newHome-flooring">
+                            <option value=""></option>
+                            <option value="Hard Wood">Hard Wood</option>
+                            <option value="Tile">Tile</option>
+                            <option value="Laminate">Laminate</option>
+                            <option value="Other">Other</option>
+                        </select><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-numBthRms'>Year Built:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="number" name="newHome-yearBuilt" min="1900" max="2021" id="newHome-yearBuilt"
+                placeholder="" class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-heating'>Heating:</label>
+                    </div>
+                    <div class='col-75'>
+                        <select name="newHome-heating" class="textInput" id="newHome-heating">
+                            <option value=""></option>
+                            <option value="Forced Air Heating">Forced Air Heating</option>
+                            <option value="Radiator">Radiator</option>
+                        </select><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-cooling'>Cooling:</label>
+                    </div>
+                    <div class='col-75'>
+                        <select name="newHome-cooling" class="textInput" id="newHome-cooling">
+                            <option value=""></option>
+                            <option value="Central Air">Central Air</option>
+                            <option value="Evaporative Cooler">Evaporative Cooler</option>
+                            <option value="None">None</option>
+                        </select><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-hoaFee'>HOA Fee:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="text" name="newHome-hoaFee" id="newHome-hoaFee" placeholder=""
+                class="textInput"><br>
+                    </div>
+                  </div>
+
+                  <div class='row'>
+                    <div class='col-25'>
+                      <label for='newHomes-lotSize'>Lot Size:</label>
+                    </div>
+                    <div class='col-75'>
+                        <input type="number" min="1" max="50000" name="newHome-lotSize" id="newHome-lotSize"
+                placeholder="" class="textInput"><br>
+                    </div>
+                  </div>
+
+
+            </div>
+        </div>
+
+
+
+        <label for="files">Select files:</label>
+        <input type="file" id="photos" multiple><br><br>
+        <button class="button" type="button" onclick="uploadRef()">Upload</button><br>
+
+        <button class="button" type="button" onclick="createHome()">Create Home</button><br>
+    </div>
+
+    <div class="footer">
+        <p>Family Solutions LLC. &copy; 2021 | Privacy Policy | More Info.</p>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyDcTaYVHzHbL1z6UT7SuOqQZIbo-oxjak4",
+            authDomain: "my-home-manager-d4283.firebaseapp.com",
+            projectId: "my-home-manager-d4283",
+            storageBucket: "my-home-manager-d4283.appspot.com",
+            messagingSenderId: "757011852605",
+            appId: "1:757011852605:web:b668c8fec536e2317ae954",
+            measurementId: "G-E4DR7SSPWE"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        //make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        db.settings({ timestampsInSnapshots: true });
+
+        firebase.analytics();
+        var cred;
+    </script>
+    <!--<script src="js/login.js"></script>
+      <script src="js/signup.js"></script>
+      <script src='js/upload-files.js'></script>
+  <script src="js/homes.js"></script>-->
+    <script src='js/newHome.js'></script>
+
+</body>
+
+</html>

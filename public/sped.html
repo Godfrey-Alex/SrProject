@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>SPED Demo</title>
+</head>
+<body onload='updatePage()'>
+    <div id='center'>
+        <h1>Enter some Data to go to Firebase</h1>
+        <div class="name">
+            <input type="text" id="name" class="textInput" name="name" placeholder="Name">
+        </div>
+        <div class="age">
+            <input type="test" id="age" class="textInput" name="age" placeholder="Age">
+        </div><br>
+        <div class="btn">
+            <button class="button" type="button" onclick="writeToFB()">Submit</button>
+        </div>
+        <div id='display'>
+            <h2>Info from DB:</h2>    
+        </div>
+    </div>
+
+ <!-- The core Firebase JS SDK is always required and must be listed first -->
+ <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+
+ <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+ <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+ <script src="js/sped.js"></script> 
+</body>
+</html>
