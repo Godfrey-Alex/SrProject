@@ -28,8 +28,8 @@
     <button class="tablinks active" onload="setATab('Details')" onclick="openTab(event, 'Details')">Details</button>
     <button class="tablinks" onclick="openTab(event, 'Lease Details')">Lease Details</button>
     <button class="tablinks" onclick="openTab(event, 'Maintenance')">Maintenance</button>
-    <button class="tablinks" onclick="openTab(event, 'Notifications')">Notifications</button>
-    <button class="tablinks" onclick="openTab(event, 'Map')">Map</button>
+    <button class="tablinks" onclick="openTab(event, 'Deletion')">Deletion</button>
+    <!--<button class="tablinks" onclick="openTab(event, 'Map')">Map</button>-->
   </div>
 
   <div id="Details" class="tabcontent">
@@ -389,17 +389,20 @@
 
   </div>
 
-  <div id="Notifications" class="tabcontent">
-    <h3>Notifications</h3>
+  <div id="Deletion" class="tabcontent">
+    <h3>Deletion</h3>
+    <p>Clicking the remove button will delete all data related to this housre. Do not proceed unless you are sure you want the house deleted.</p>
+    <button class="button" type="button" onclick="removeHouse()">Remove House</button><br><br>
+
 
   </div>
 
-  <div id="Map" class="tabcontent">
+  <!-- <div id="Map" class="tabcontent">
     <h3>Map</h3>
-    <!--
+   
     <iframe src="https://www.google.com/maps/place/5034+W+White+Cherry+Way,+Salt+Lake+City,+UT+84120" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
--->
-  </div>
+
+  </div>-->
 
   <!--New Stuff-->
 

@@ -10,7 +10,7 @@ function login(){
             console.log("login " + cred.user);
             //console.log("login " + cred.user.uid);
             localStorage.setItem("loggedInUUID", cred.user.uid);
-            location.replace("/profile.html");
+            location.replace("/summary.html");
         }
     );
 }

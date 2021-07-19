@@ -1,6 +1,7 @@
 localStorage.setItem("imageJSON", '{"images":[');
 
-function uploadRef() {
+function uploadRef() { 
+  window.alert('Please do not navigate away from this page until upload is complete.')
   db.collection("homes").add({
     ownerID: localStorage.getItem("loggedInUUID"),
     homeName: document.getElementById('newHome-name').value,
@@ -36,6 +37,7 @@ function uploadRef() {
   const file = document.querySelector("#photos").files
   console.log(file.length)
   for (i = 0; i < file.length; i++) {
+    console.log('i: ' + i + ' file.length: ' + file.length)
     const name = new Date() + '_' + file[i].name;
     const metadata = {
       contentType: file[i].type
@@ -48,10 +50,14 @@ function uploadRef() {
         db.collection("homeImages").add({
           url: url,
           homeID: localStorage.getItem("currentHomeID")
+        })
       })
-      })
-
+    if (i == file.length - 1) {
+      //window.setTimeout('alert("House Successfully Created");window.close();', 5000);
+      //location.replace("/summary.html");
+    }
   }
+  //location.replace("/summary.html");
 }
 
 function onLoad() {

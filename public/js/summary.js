@@ -14,7 +14,7 @@ function onLoad() {
                     div.id = "slideshow-block" + doc.data().homeID;
                     div.className = "btn"// slideshow-block" + doc.data().homeID;
                     div.innerHTML = "<h3>" + doc.data().homeName + "</h3><br><div id=\"" + doc.data().homeID + "images\"></div><p>" + doc.data().stAddress + "<br>" + doc.data().city + ", " + doc.data().state + "</p>";
-                    div.style = "height: 300px";
+                    div.style = "height: 415px";
                     //var oldDiv = document.getElementById('parent');
                     document.getElementById('parent').appendChild(div);
 
@@ -53,7 +53,7 @@ function onLoad() {
                                 } else {
                                     img.setAttribute("style", "margin-left: auto; margin-right: auto; display: none;")
                                 }
-                                img.setAttribute("width", "50%");
+                                img.setAttribute("width", "40%");
                                 img.setAttribute("height", "auto");
                                 document.getElementById(doc.data().homeID + "images").appendChild(img);
                                 queryIdx++;
