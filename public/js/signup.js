@@ -1,7 +1,27 @@
-//const { auth } = require("firebase-admin");
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+    apiKey: "AIzaSyDcTaYVHzHbL1z6UT7SuOqQZIbo-oxjak4",
+    authDomain: "my-home-manager-d4283.firebaseapp.com",
+    projectId: "my-home-manager-d4283",
+    storageBucket: "my-home-manager-d4283.appspot.com",
+    messagingSenderId: "757011852605",
+    appId: "1:757011852605:web:b668c8fec536e2317ae954",
+    measurementId: "G-E4DR7SSPWE"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-//const { auth } = require("firebase-admin");
+//make auth and firestore references
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+db.settings({ timestampsInSnapshots: true });
+
+firebase.analytics();
 var cred;
+
+//Copy from here and above
 
 function onLoad(){
     console.log("on page load ");

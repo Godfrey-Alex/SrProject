@@ -21,41 +21,116 @@ db.settings({ timestampsInSnapshots: true });
 firebase.analytics();
 var cred;
 
+//Copy from here and above
+
 $(document).ready(function () {
     $("input").change(function () {
         if ($(this).is(':checked')) {
             console.log("adding maintenance to firebase")
+            var seasonDate;
             var today = new Date();
             var year = today.getFullYear();
+            console.log('year: ' + year);
             var mon = today.getMonth();
+            console.log('mon: ' + mon);
             var day = today.getDate();
+            console.log('day: ' + day);
             var hr = today.getHours();
-            var min = today.getMinutes()+2;
-            console.log('today info before massaging: ' + year+mon+day+hr+min);
-            if(mon < 10){
-                mon = '0'+mon;
+            var min = today.getMinutes() + 2;
+
+            var spring = '03200900';
+            var summer = '06200900';
+            var fall = '09200900';
+            var winter = '12210900';
+
+            if ($(this).attr('id').includes('spring')) {
+                console.log('spring clicked')
+                if (mon == 3) {
+                    if (day < 20) {
+                        seasonDate = year + spring;
+                    } else {
+                        seasonDate = (year + 1) + spring
+                    }
+                } else if (mon < 3) {
+                    seasonDate = year + spring;
+                } else {
+                    seasonDate = (year + 1) + spring
+                }
+                console.log('seasonDate: ' + seasonDate)
+            } else if ($(this).attr('id').includes('summer')) {
+                console.log('summer clicked')
+                if (mon == 6) {
+                    if (day < 20) {
+                        seasonDate = year + summer;
+                    } else {
+                        seasonDate = (year + 1) + summer
+                    }
+                } else if (mon < 6) {
+                    seasonDate = year + summer;
+                } else {
+                    seasonDate = (year + 1) + summer
+                }
+                console.log('seasonDate: ' + seasonDate)
+            } else if ($(this).attr('id').includes('fall')) {
+                console.log('fall clicked')
+                if (mon == 9) {
+                    if (day < 20) {
+                        seasonDate = year + fall;
+                    } else {
+                        seasonDate = (year + 1) + fall
+                    }
+                } else if (mon < 9) {
+                    seasonDate = year + fall;
+                } else {
+                    seasonDate = (year + 1) + fall
+                }
+                console.log('seasonDate: ' + seasonDate)
+            } else if ($(this).attr('id').includes('winter')) {
+                console.log('winter clicked')
+                if (mon == 12) {
+                    if (day < 20) {
+                        seasonDate = year + winter;
+                    } else {
+                        seasonDate = (year + 1) + winter;
+                    }
+                } else if (mon < 9) {
+                    seasonDate = year + winter;
+                } else {
+                    seasonDate = (year + 1) + winter;
+                }
+                console.log('seasonDate: ' + seasonDate)
             }
-            if(day < 10){
-                day = '0'+day;
+
+            //console.log('today info before massaging: ' + year + mon + day + hr + min);
+            if (mon < 10) {
+                mon = '0' + mon;
             }
-            if (hr < 10){
-                hr = '0'+hr;
+            if (day < 10) {
+                day = '0' + day;
             }
-            if ( min < 10){
-                min = '0'+min;
+            if (hr < 10) {
+                hr = '0' + hr;
             }
-            var date = ''+year+mon+day+hr+min;
-            console.log('today info after massaging: ' + date);
+            if (min < 10) {
+                min = '0' + min;
+            }
+            var date = '' + year + mon + day + hr + min;
+            //console.log('today info after massaging: ' + date);
             db.collection("maintenance").add({
                 ownerID: localStorage.getItem("loggedInUUID"),
                 homeID: localStorage.getItem("currentHomeID"),
                 msg: $(this).attr('value'),
                 maintName: $(this).attr('id'),
                 maintID: localStorage.getItem("currentHomeID") + $(this).attr('id'),
-                dueDate: date
+                dueDate: seasonDate
             })
                 .then((docRef) => {
                     console.log("Document written with ID: ", docRef.id);
+                    db.collection("maintenance").doc(docRef.id).update({
+                        bigID: docRef.id
+                    }).then(function () {
+                        console.log("bigID added to maintenance item");
+                    });
                 })
                 .catch((error) => {
                     console.error("Error adding document: ", error);
@@ -100,7 +175,7 @@ function onLoad() {
                 console.log("Error getting documents: ", error);
             });
 
-            db.collection("maintenance").where("homeID", "==", localStorage.getItem("currentHomeID"))
+        db.collection("maintenance").where("homeID", "==", localStorage.getItem("currentHomeID"))
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -165,7 +240,7 @@ function onLoad() {
                 console.log("Error getting documents: ", error);
             });
 
-            db.collection("leases").where("homeID", "==", localStorage.getItem("currentHomeID"))
+        db.collection("leases").where("homeID", "==", localStorage.getItem("currentHomeID"))
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -251,7 +326,7 @@ function changeHouseID() {
             console.log("Error getting documents: ", error);
         });
 
-        db.collection("leases").where("homeID", "==", localStorage.getItem("currentHomeID"))
+    db.collection("leases").where("homeID", "==", localStorage.getItem("currentHomeID"))
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -272,16 +347,16 @@ function changeHouseID() {
 
 function updateHouse() {
     db.collection("maintenance").where("homeID", "==", localStorage.getItem("currentHomeID"))
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log("maintID: " + doc.data().maintID)
-            document.getElementById(doc.data().maintName).checked = true;
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log("maintID: " + doc.data().maintID)
+                document.getElementById(doc.data().maintName).checked = true;
+            })
         })
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
 
     db.collection("homes").doc(localStorage.getItem("currentHomeID")).update({
         ownerID: localStorage.getItem("loggedInUUID"),
@@ -303,7 +378,7 @@ function updateHouse() {
 
 }
 
-function updateLease(){
+function updateLease() {
 
     db.collection('leases').doc(localStorage.getItem("currentHomeID")).set({
         homeID: localStorage.getItem("currentHomeID"),
@@ -370,83 +445,90 @@ function setATab(tabName) {
     document.getElementById(tabName).style.display = "block";
 }
 
-function removeHouse(){
-    console.log('Deleting house');
-    db.collection("homeImages").where("homeID", "==", localStorage.getItem("currentHomeID"))
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log("homeImages: " + doc.id)
-            db.collection("homeImages").doc(doc.id).delete().then(() => {
-                console.log("Document successfully deleted!");
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-            
-        })
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
+function removeHouse() {
+    function deleteHouse() {
 
-    db.collection("homes").where("homeID", "==", localStorage.getItem("currentHomeID"))
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log("homes: " + doc.id)
-            db.collection("homes").doc(doc.id).delete().then(() => {
-                console.log("Document successfully deleted!");
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-        })
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
+        window.alert('Please wait for the house to be deleted and do not click anywhere');
+        db.collection("homeImages").where("homeID", "==", localStorage.getItem("currentHomeID"))
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log("homeImages: " + doc.id)
+                    db.collection("homeImages").doc(doc.id).delete().then(() => {
+                        console.log("Document successfully deleted!");
+                    }).catch((error) => {
+                        console.error("Error removing document: ", error);
+                    });
 
-    db.collection("leases").where("homeID", "==", localStorage.getItem("currentHomeID"))
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log("leases: " + doc.id)
-            db.collection("leases").doc(doc.id).delete().then(() => {
-                console.log("Document successfully deleted!");
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
+                })
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
             });
-        })
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
 
-    db.collection("maintenance").where("homeID", "==", localStorage.getItem("currentHomeID"))
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log("maintenance: " + doc.id);
-            db.collection("maintenance").doc(doc.id).delete().then(() => {
-                console.log("Document successfully deleted!");
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
+        db.collection("homes").where("homeID", "==", localStorage.getItem("currentHomeID"))
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log("homes: " + doc.id)
+                    db.collection("homes").doc(doc.id).delete().then(() => {
+                        console.log("Document successfully deleted!");
+                    }).catch((error) => {
+                        console.error("Error removing document: ", error);
+                    });
+                })
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
             });
-        })
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
 
-    db.collection("homes").where("ownerID", "==", localStorage.getItem("loggedInUUID"))
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log("home id: " + doc.id);
-            localStorage.setItem("currentHomeID", doc.id);
-        })
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
-    //location.reload();
+        db.collection("leases").where("homeID", "==", localStorage.getItem("currentHomeID"))
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log("leases: " + doc.id)
+                    db.collection("leases").doc(doc.id).delete().then(() => {
+                        console.log("Document successfully deleted!");
+                    }).catch((error) => {
+                        console.error("Error removing document: ", error);
+                    });
+                })
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+
+        db.collection("maintenance").where("homeID", "==", localStorage.getItem("currentHomeID"))
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log("maintenance: " + doc.id);
+                    db.collection("maintenance").doc(doc.id).delete().then(() => {
+                        console.log("Document successfully deleted!");
+                    }).catch((error) => {
+                        console.error("Error removing document: ", error);
+                    });
+                })
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+
+        db.collection("homes").where("ownerID", "==", localStorage.getItem("loggedInUUID"))
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log("home id: " + doc.id);
+                    localStorage.setItem("currentHomeID", doc.id);
+                })
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+
+        setTimeout(() => {
+            location.replace("/summary.html");
+        }, 3000)
+    }
+    deleteHouse()
 }

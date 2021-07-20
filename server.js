@@ -36,6 +36,9 @@ const db = fs.firestore();
 
 
 function alerts() {
+  var dueDate;
+  var usedYear;
+  var usedSuffix;
   var today = new Date();
   var year = today.getFullYear();
   var mon = today.getMonth();
@@ -63,10 +66,25 @@ function alerts() {
     querySnapshot.forEach((doc) => {
       console.log(doc.data())
       send(doc.data().ownerID, doc.data().homeID, doc.data().msg)
+      dueDate = doc.data().dueDate;
+      usedDate = parseInt(dueDate.substring(0,4));
+      usedSuffix = dueDate.substring(4, 12);      
+      usedDate++;
+      console.log('dueDate: ' + dueDate + ' usedDate: ' + usedDate + ' usedSuffix: ' + usedSuffix);
+      dueDate = usedDate + usedSuffix
+      console.log('new due Date: ' + dueDate);
+      db.collection("maintenance").doc(doc.data().bigID).update({
+        dueDate: dueDate
+    }).then(function () {
+        console.log("maitenance duedate is updated");
+    });
+
     })
   }, err => {
     console.log(`Encountered error: ${err}`);
   });
+
+
 }
 
 function intervalFunc() {
@@ -128,7 +146,6 @@ function send(ownerID, homeID, message) {
   })
 
 
-  /**REmoved the code here from Mailjet */
 }
 
 
